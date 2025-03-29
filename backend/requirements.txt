@@ -1,5 +1,11 @@
 fastapi
 uvicorn
 pillow
-torch
-torchvision
+pydentic
+pydantic-settings
+celery
+python-multipart
+
+# The following packages are installed in Dockerfile
+# torch
+# torchvision
