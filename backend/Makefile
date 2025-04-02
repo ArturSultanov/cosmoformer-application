@@ -10,7 +10,7 @@ build:
 
 run:
 	@echo "Running container $(CONTAINER_NAME)..."
-	docker run --rm --name $(CONTAINER_NAME) -p $(LPORT):$(CPORT) -d -v $(PWD):/app:Z --user $(id -u):$(id -g) $(IMAGE_NAME)
+	docker run --name $(CONTAINER_NAME) -p $(LPORT):$(CPORT) -d $(IMAGE_NAME)
 
 stop:
 	@echo "Stopping container $(CONTAINER_NAME)..."
