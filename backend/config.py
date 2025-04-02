@@ -1,7 +1,6 @@
 import os
 from pydantic.v1 import BaseSettings
 
-
 # TODO: switch to pydantic-settings
 
 class Settings(BaseSettings):

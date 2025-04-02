@@ -1,21 +1,19 @@
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI, UploadFile, HTTPException
 from PIL import Image
 from contextlib import asynccontextmanager
 from model import Cosmoformer
 from config import settings
 from logger import logger
-from utils.image_validation import validation
 from schemas.inference import InferenceResponse
-from starlette.status import HTTP_500_INTERNAL_SERVER_ERROR
+from starlette.status import HTTP_500_INTERNAL_SERVER_ERROR, HTTP_400_BAD_REQUEST
 import io
 
 cosmoformer: Cosmoformer
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    logger.info('Loading the Cosmoformer model')
-
     try:
+        logger.info('Loading the Cosmoformer model')
         global cosmoformer
         cosmoformer = Cosmoformer(model_path=settings.MODEL_PATH)
         yield
@@ -36,7 +34,12 @@ async def model():
 
 @app.post("/inference", response_model=InferenceResponse)
 async def inference(file: UploadFile):
-    validation(file)
+
+    if file.content_type not in settings.ACCEPTED_MIME_TYPES:
+        raise HTTPException(
+            status_code=HTTP_400_BAD_REQUEST,
+            detail=f"Unsupported file type: {file.content_type}. Supported types: {settings.ACCEPTED_MIME_TYPES}"
+        )
 
     file_bytes = await file.read()
 
