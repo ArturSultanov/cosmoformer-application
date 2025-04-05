@@ -1,0 +1,35 @@
+.dropzone {
+  border: 2px dashed #999;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  margin-bottom: 1rem;
+  /* Dark mode style (default) */
+  background-color: #2f2f2f;
+}
+
+.dropzone-active {
+  /* Slightly lighter to show highlight when drag is active */
+  background-color: #3a3a3a;
+}
+
+/* In light mode, override the background color */
+@media (prefers-color-scheme: light) {
+  .dropzone {
+    background-color: #f0f0f0;
+  }
+
+  .dropzone-active {
+    background-color: #e4e4e4;
+  }
+}
+
+/* Additional text colors if needed */
+.dropzone-file-info {
+  color: #3ee593; /* bright green example */
+}
+.dropzone-error-message {
+  color: #ff4e4e;
+}
