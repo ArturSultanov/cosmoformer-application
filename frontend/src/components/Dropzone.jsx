@@ -35,8 +35,8 @@ function MyDropzone({ file, onFileAccepted, onError }) {
   } = useDropzone({
     onDrop,
     accept: {
-      'image/png': ['.png'],
-      'image/jpeg': ['.jpg', '.jpeg']
+      'image/png': [],
+      'image/jpeg': []
     },
     maxSize: 5 * 1024 * 1024, // 5MB
     multiple: false
