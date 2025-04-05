@@ -10,19 +10,16 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
-  // Called by MyDropzone when a file is accepted
   const onFileAccepted = (file) => {
     setSelectedFile(file)
     setResult('')
     setError('')
   }
 
-  // Called by MyDropzone when there's a validation error
   const onDropzoneError = (msg) => {
     setError(msg)
   }
 
-  // Clear button resets all relevant states
   const handleClear = () => {
     setSelectedFile(null)
     setResult('')
