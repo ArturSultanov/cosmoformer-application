@@ -3,14 +3,14 @@ from PIL import Image
 import torchvision.transforms.v2 as v2
 
 LABELS = {
-    0: "barred_spiral",
-    1: "edge_on_disk",
-    2: "featured_without_bar_or_spiral",
-    3: "irregular",
-    4: "smooth_cigar",
-    5: "smooth_inbetween",
-    6: "smooth_round",
-    7: "unbarred_spiral"
+    0: "Barred spiral",
+    1: "Edge on disk",
+    2: "Featured without bar or spiral",
+    3: "Irregular",
+    4: "Smooth cigar",
+    5: "Smooth inbetween",
+    6: "Smooth round",
+    7: "Unbarred spiral"
 }
 
 
@@ -33,8 +33,11 @@ class Cosmoformer:
             v2.Compose([v2.ToImage(), v2.ToDtype(torch.float32, scale=True)])  # v2.ToTensor()
         ])
 
-    def get_name(self):
-        return Cosmoformer._NAME
+    def _get_name(self):
+        return self._NAME
+    
+    def _health_check(self):
+        return self.model is not None
 
     def predict(self, image: Image.Image) -> str:
         """
