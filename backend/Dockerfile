@@ -1,4 +1,4 @@
-FROM quay.io/fedora/python-312:latest
+FROM quay.io/fedora/python-312-minimal:latest
 
 USER 1001
 
