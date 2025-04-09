@@ -1,7 +1,7 @@
-IMAGE_NAME := cosmoformer-backend-image
-CONTAINER_NAME := cosmoformer-backend-container
-LPORT := 8000
-CPORT := 8000
+IMAGE_NAME := cosmoformer-frontend-image
+CONTAINER_NAME := cosmoformer-frontend-container
+LPORT := 8080
+CPORT := 8080
 .PHONY: build run stop logs shell clean
 
 build:

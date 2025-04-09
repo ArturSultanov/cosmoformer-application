@@ -26,7 +26,6 @@ function App() {
     setError('')
   }
 
-  // Submit button triggers the POST /inference request
   const handleSubmit = async () => {
     if (!selectedFile) {
       setError('No file selected')
@@ -40,17 +39,6 @@ function App() {
       const formData = new FormData()
       formData.append('file', selectedFile)
 
-      // const response = await axios.post(
-      //   'http://localhost:8000/inference',
-      //   formData,
-      //   {
-      //     headers: {
-      //       'Content-Type': 'multipart/form-data'
-      //     }
-      //   }
-      // )
-
-      // TODO: remove - this is just for testing purposes
       const response = await axios.post(
         '/api/inference',
         formData,
