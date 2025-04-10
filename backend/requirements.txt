@@ -6,6 +6,8 @@ pydantic-settings
 celery
 python-multipart
 
-# The following packages are installed in Dockerfile
+# The following packages are installed in Dockerfile, 
+# they require an additinal arguaments for correct work.
+
 # torch
 # torchvision

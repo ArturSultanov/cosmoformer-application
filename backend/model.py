@@ -3,14 +3,14 @@ from PIL import Image
 import torchvision.transforms.v2 as v2
 
 LABELS = {
-    0: "Barred spiral",
-    1: "Edge on disk",
-    2: "Featured without bar or spiral",
+    0: "Barred Spiral",
+    1: "Edge On Disk",
+    2: "Featured Without Bar Or Spiral",
     3: "Irregular",
-    4: "Smooth cigar",
-    5: "Smooth inbetween",
-    6: "Smooth round",
-    7: "Unbarred spiral"
+    4: "Smooth Cigar",
+    5: "Smooth Inbetween",
+    6: "Smooth Round",
+    7: "Unbarred Spiral"
 }
 
 
