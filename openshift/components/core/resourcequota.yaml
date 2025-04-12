@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: cosmoformer-rq
+  namespace: cosmoformer-app
+spec:
+  hard:
+    pods: "20"
+    requests.cpu: "5"
+    requests.memory: "16Gi"
+    limits.cpu: "10"
+    limits.memory: "32Gi"

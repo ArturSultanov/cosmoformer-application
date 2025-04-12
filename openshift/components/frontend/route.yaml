@@ -1,0 +1,17 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: cosmoformer-frontend-route
+  namespace: cosmoformer-app
+  labels:
+    app: cosmoformer
+    layer: frontend
+spec:
+  to:
+    kind: Service
+    name: cosmoformer-frontend-service
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
