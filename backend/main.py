@@ -30,7 +30,7 @@ async def root():
 
 @app.get("/healthcheck")
 def healthcheck():
-        return {"message": "FastAPI backend is up and running!"}
+    return {"message": "FastAPI backend is up and running!"}
 
 @app.get("/readycheck")
 def readycheck():
