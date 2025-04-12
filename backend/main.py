@@ -7,7 +7,8 @@ from logger import logger
 from schemas.inference import InferenceResponse
 import io
 
-cosmoformer: Cosmoformer
+cosmoformer: Cosmoformer = None
+model_busy: bool = False
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -25,14 +26,21 @@ app = FastAPI(lifespan=lifespan)
 
 @app.get("/")
 async def root():
-    return {f"Hello World!"}
+    return {"message": "Hello World!"}
 
-@app.get("/modelname")
-async def model():
-    return {f"Model: {cosmoformer.get_name()}"}
+@app.get("/healthcheck")
+def healthcheck():
+        return {"message": "FastAPI backend is up and running!"}
+
+@app.get("/readycheck")
+def readycheck():
+    if cosmoformer is None or model_busy:
+        raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="Model is busy or not ready to accept requests")
+    return {"message": "Model is ready."}
 
 @app.post("/inference", response_model=InferenceResponse)
 async def inference(file: UploadFile):
+    global model_busy
 
     if file.content_type not in settings.ACCEPTED_MIME_TYPES:
         raise HTTPException(
@@ -47,8 +55,15 @@ async def inference(file: UploadFile):
     except Exception as e:
         logger.error(f"Error parsing uploaded image: {e}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Error while processing uploaded image.")
-
-    predicted_class = cosmoformer.predict(image)
-    logger.debug(f"Predicted class: {predicted_class}")
+    
+    try:
+        model_busy = True     
+        predicted_class = cosmoformer.predict(image)
+        logger.debug(f"Predicted class: {predicted_class}")
+    except Exception as e:
+        logger.error(f"Error predicting uploaded image class: {e}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Error while processing uploaded image.")
+    finally:
+        model_busy = False
 
     return InferenceResponse(predicted_class=predicted_class)
