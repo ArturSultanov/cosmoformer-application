@@ -12,7 +12,7 @@ ALLOWED_LABELS: set = ("Barred Spiral",
 backend_url:str = "http://localhost:8000"
 
 def test_inference_for_all_images():
-    images_folder = "../images"
+    images_folder = "images"
 
     for filename in os.listdir(images_folder):
 
