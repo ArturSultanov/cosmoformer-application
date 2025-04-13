@@ -1,7 +1,7 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: cosmoformer-backend-hpa
+  name: cosmoformer-frontend-hpa
   namespace: cosmoformer-app
   labels:
     app: cosmoformer
@@ -9,7 +9,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: cosmoformer-backend-deployment
+    name: cosmoformer-frontend-deployment
   minReplicas: 1
   maxReplicas: 5
   metrics:
@@ -24,7 +24,7 @@ spec:
         name: memory
         target:
           type: AverageValue
-          averageValue: 3840Mi 
+          averageValue: "900Mi" 
   behavior:
     scaleDown:
       stabilizationWindowSeconds: 300
