@@ -24,7 +24,7 @@ spec:
         name: memory
         target:
           type: AverageValue
-          averageValue: "900Mi" 
+          averageValue: 3840Mi  
   behavior:
     scaleDown:
       stabilizationWindowSeconds: 300
