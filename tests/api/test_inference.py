@@ -9,7 +9,7 @@ ALLOWED_LABELS: set = ("Barred Spiral",
                        "Smooth Round", 
                        "Unbarred Spiral")
 
-backend_url:str = "http://localhost:8000"
+backend_url:str = os.getenv(API_URL, "http://localhost:8000")
 
 def test_inference_for_all_images():
     images_folder = "images"

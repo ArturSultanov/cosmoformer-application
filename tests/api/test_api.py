@@ -1,6 +1,7 @@
 import requests
+import os
 
-backend_url:str = "http://localhost:8000"
+backend_url:str = os.getenv(API_URL, "http://localhost:8000")
 
 def test_root():
     response = requests.get(backend_url)
