@@ -14,6 +14,7 @@ for (let i = 0; i < imagesList.length; i++) {
   fileDataMap[fname] = open(`../images/${fname}`, 'b');
 }
 
+const imagesListLength = imagesList.length
 
 export const options = {
   scenarios: {
@@ -22,8 +23,8 @@ export const options = {
       exec: 'performTest',
       startVUs: 0,
       stages: [
-        { duration: '15s', target: 5 },
-        { duration: '15s', target: 5 },
+        { duration: '10s', target: 5 },
+        { duration: '40s', target: 5 },
         { duration: '10s', target: 0 },
       ],
       gracefulStop: '5s',
@@ -41,8 +42,7 @@ export function performTest() {
 }
 
 function makeRequest() {
-  const randomIndex = Math.floor(Math.random() * imagesList.length);
-  const filename = imagesList[randomIndex];
+  const filename = imagesList[Math.floor(Math.random() * imagesListLength)];
   const fileContent = fileDataMap[filename];
   const fileField = http.file(fileContent, filename, 'image/jpeg');
 
