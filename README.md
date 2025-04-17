@@ -36,7 +36,7 @@ SULTANOV, Artur. AI-Powered Web Application for Galaxy Morphology Classification
 
 The main idea was to create a web application, which uses ViT-based model to predict galaxy morphological class based on images of galaxy.
 
-![Web UI](<Screenshot from 2025-04-12 20-31-54.png>)
+![Web UI](<frontend_ui.png>)
 
 The application is consist of the follwing parts:
 
