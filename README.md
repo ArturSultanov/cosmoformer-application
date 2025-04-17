@@ -1,6 +1,7 @@
 # Galaxy classification application
 
 - [Galaxy classification application](#galaxy-classification-application)
+  - [Introduction](#introduction)
   - [Application Overview](#application-overview)
     - [Backend](#backend)
     - [Frontend](#frontend)
@@ -13,8 +14,9 @@
     - [Kustomize tests](#kustomize-tests)
     - [Performance tests](#performance-tests)
 
+## Introduction
 
-This repository "Galaxy classification application" contains the code of application that can classify galaxy images, which is the part of my Bachelor thesis at Brno Technical University (BUT).  
+This repository "Galaxy classification application" contains the code of application that can classify galaxy images, which is the part of my Bachelor thesis at Brno Technical University (BUT).
 
 **Thesis title**: AI-Powered Web Application for Galaxy Morphology Classification on Red Hat OpenShift  
 **Acad. year**: 2024/2025  
