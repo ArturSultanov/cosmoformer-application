@@ -196,7 +196,7 @@ tests/kustomize/test_kustomize_dry_run.sh
 
 ### Performance tests
 
-The [tests/performance](tests/performance) folder contains a **k6** test that measures the throughput and latency of the `/inference` endpoint. This also is good way to check if [HorizontalPodAutoscaler's](#openshift) (which are used in cluster) work as expected.
+The [tests/performance](tests/performance) folder contains a **k6** test that measures the throughput and latency of the `/inference` endpoint. This also is good way to check if [HorizontalPodAutoscaler's](#openshift) (which are used in cluster) work as expected. The test executes a “ramping‑vus” scenario of performance and stress tests. This scenario starts with increasing the  virtual users (VUs) from 0 to 5 in the first 10 seconds, keeps 5 users active for 280 seconds, then ramps back down to 0 during the final 10 seconds.The delay between requests of one user is 5 seconds, which simulates the time needed for a real person to upload an image. The entire testing time is 5 minutes. 
 
 1. **[run_k6_test.sh](tests/performance/run_k6_test.sh)** – helper script that  
    * picks a target URL automatically (prefers the OpenShift Route and falls back to `http://localhost:8000/inference`),  
@@ -236,19 +236,9 @@ Running k6 test ...
               * performace_test: Up to 5 looping VUs for 40s over 3 stages (gracefulRampDown: 30s, exec: performTest, gracefulStop: 5s)
 
 INFO[0003] Response for 33_test.jpg: status 200, body: {"predicted_class":"Smooth Round"}  source=console
-INFO[0004] Response for 24_test.jpg: status 200, body: {"predicted_class":"Unbarred Spiral"}  source=console
-INFO[0022] Response for 58_test.jpg: status 200, body: {"predicted_class":"Smooth Inbetween"}  source=console
-INFO[0035] Response for 41_test.jpg: status 200, body: {"predicted_class":"Smooth Inbetween"}  source=console
-INFO[0036] Response for 84_test.jpg: status 504, body: <html><body><h1>504 Gateway Time-out</h1>
-The server didn't respond in time.
-</body></html>  source=console
-INFO[0039] Response for 23_test.jpg: status 504, body: <html><body><h1>504 Gateway Time-out</h1>
-The server didn't respond in time.
-</body></html>  source=console
-INFO[0042] Response for 90_test.jpg: status 504, body: <html><body><h1>504 Gateway Time-out</h1>
-The server didn't respond in time.
-</body></html>  source=console
-
+  .
+  .
+  .
 
   █ THRESHOLDS 
 
@@ -257,40 +247,40 @@ The server didn't respond in time.
     ✗ 'p(95)<2000' p(95)=30s
 
     http_req_failed
-    ✗ 'rate<0.05' rate=42.85%
+    ✗ 'rate<0.05' rate=31.52%
 
 
   █ TOTAL RESULTS 
 
-    checks_total.......................: 14     0.311108/s
-    checks_succeeded...................: 42.85% 6 out of 14
-    checks_failed......................: 57.14% 8 out of 14
+    checks_total.......................: 184    0.603278/s
+    checks_succeeded...................: 64.13% 118 out of 184
+    checks_failed......................: 35.86% 66 out of 184
 
     ✗ status was 200
-      ↳  57% — ✓ 4 / ✗ 3
+      ↳  68% — ✓ 63 / ✗ 29
     ✗ response time < 2s
-      ↳  28% — ✓ 2 / ✗ 5
+      ↳  59% — ✓ 55 / ✗ 37
 
     HTTP
-    http_req_duration.......................................................: avg=17.06s min=414.49ms med=16.8s max=30s    p(90)=30s    p(95)=30s   
-      { expected_response:true }............................................: avg=7.35s  min=414.49ms med=6.1s  max=16.8s  p(90)=15.28s p(95)=16.04s
-    http_req_failed.........................................................: 42.85% 3 out of 7
-    http_reqs...............................................................: 7      0.155554/s
+    http_req_duration.......................................................: avg=10.82s min=39.52ms med=273.9ms  max=30.01s p(90)=30s   p(95)=30s  
+      { expected_response:true }............................................: avg=1.99s  min=39.52ms med=176.31ms max=22.08s p(90)=9.73s p(95)=14.2s
+    http_req_failed.........................................................: 31.52% 29 out of 92
+    http_reqs...............................................................: 92     0.301639/s
 
     EXECUTION
-    iteration_duration......................................................: avg=18.06s min=1.41s    med=17.8s max=31.01s p(90)=31.01s p(95)=31.01s
-    iterations..............................................................: 7      0.155554/s
-    vus.....................................................................: 3      min=0      max=5
-    vus_max.................................................................: 5      min=5      max=5
+    iteration_duration......................................................: avg=15.4s  min=5.04s   med=5.27s    max=35.01s p(90)=35s   p(95)=35s  
+    iterations..............................................................: 90     0.295082/s
+    vus.....................................................................: 4      min=0        max=5
+    vus_max.................................................................: 5      min=5        max=5
 
     NETWORK
-    data_received...........................................................: 16 kB  353 B/s
-    data_sent...............................................................: 148 kB 3.3 kB/s
+    data_received...........................................................: 40 kB  130 B/s
+    data_sent...............................................................: 1.3 MB 4.4 kB/s
 
 
 
 
-running (45.0s), 0/5 VUs, 7 complete and 3 interrupted iterations
-performace_test ✓ [======================================] 0/5 VUs  40s
-ERRO[0045] thresholds on metrics 'http_req_duration, http_req_failed' have been crossed 
+running (5m05.0s), 0/5 VUs, 90 complete and 4 interrupted iterations
+performace_test ✓ [======================================] 4/5 VUs  5m0s
+ERRO[0306] thresholds on metrics 'http_req_duration, http_req_failed' have been crossed 
 ```

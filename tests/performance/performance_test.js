@@ -24,7 +24,7 @@ export const options = {
       startVUs: 0,
       stages: [
         { duration: '10s', target: 5 },
-        { duration: '40s', target: 5 },
+        { duration: '280s', target: 5 },
         { duration: '10s', target: 0 },
       ],
       gracefulStop: '5s',
@@ -38,7 +38,7 @@ export const options = {
 
 export function performTest() {
   makeRequest();
-  sleep(1);
+  sleep(5);
 }
 
 function makeRequest() {
