@@ -3,6 +3,7 @@ set -e
 
 echo "Setting CRC preset to openshift..."
 crc config set preset openshift
+crc config set enable-cluster-monitoring true
 
 echo "Running crc setup..."
 crc setup
