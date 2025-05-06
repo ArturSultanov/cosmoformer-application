@@ -284,3 +284,23 @@ running (5m05.0s), 0/5 VUs, 90 complete and 4 interrupted iterations
 performace_test ✓ [======================================] 4/5 VUs  5m0s
 ERRO[0306] thresholds on metrics 'http_req_duration, http_req_failed' have been crossed 
 ```
+
+### Galaxy Zoo 2
+
+    @article{10.1093/mnras/stt1458,
+    author = {Willett, Kyle W. and Lintott, Chris J. and Bamford, Steven P. and Masters, Karen L. and Simmons, Brooke D. and Casteels, Kevin R. V. and Edmondson, Edward M. and Fortson, Lucy F. and Kaviraj, Sugata and Keel, William C. and Melvin, Thomas and Nichol, Robert C. and Raddick, M. Jordan and Schawinski, Kevin and Simpson, Robert J. and Skibba, Ramin A. and Smith, Arfon M. and Thomas, Daniel},
+    title = "{Galaxy Zoo 2: detailed morphological classifications for 304 122 galaxies from the Sloan Digital Sky Survey}",
+    journal = {Monthly Notices of the Royal Astronomical Society},
+    volume = {435},
+    number = {4},
+    pages = {2835-2860},
+    year = {2013},
+    month = {09},
+    issn = {0035-8711},
+    doi = {10.1093/mnras/stt1458},
+    }
+
+## Links:
+1. Galaxy classification application: https://github.com/ArturSultanov/cosmoformer-application
+2. CosmoFormer model: https://github.com/ArturSultanov/cosmoformer-model
+3. CosmoFormer dataset: https://github.com/ArturSultanov/cosmoformer-dataset
