@@ -13,6 +13,8 @@
     - [API tests](#api-tests)
     - [Kustomize tests](#kustomize-tests)
     - [Performance tests](#performance-tests)
+    - [Galaxy Zoo 2](#galaxy-zoo-2)
+  - [Links:](#links)
 
 ## Introduction
 
@@ -304,3 +306,4 @@ ERRO[0306] thresholds on metrics 'http_req_duration, http_req_failed' have been 
 1. Galaxy classification application: https://github.com/ArturSultanov/cosmoformer-application
 2. CosmoFormer model: https://github.com/ArturSultanov/cosmoformer-model
 3. CosmoFormer dataset: https://github.com/ArturSultanov/cosmoformer-dataset
+4. CosmoFormer dataset (no pre-downloaded images): https://github.com/ArturSultanov/cosmoformer-dataset-no-images
